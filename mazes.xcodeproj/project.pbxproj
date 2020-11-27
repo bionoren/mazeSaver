@@ -7,15 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE2EB9D225708569009531B3 /* huntAndKill.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2EB9D125708569009531B3 /* huntAndKill.m */; };
+		BE2EBA00257155AB009531B3 /* solver.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2EB9FF257155AB009531B3 /* solver.m */; };
+		BE2EBA15257164AB009531B3 /* recursiveBacktracker.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2EBA14257164AB009531B3 /* recursiveBacktracker.m */; };
+		BE2EBA1A25716FA1009531B3 /* algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2EBA1925716FA1009531B3 /* algorithm.m */; };
 		BE786E152550AE10008FDDF5 /* mazesView.h in Headers */ = {isa = PBXBuildFile; fileRef = BE786E142550AE10008FDDF5 /* mazesView.h */; };
 		BE786E172550AE10008FDDF5 /* mazesView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE786E162550AE10008FDDF5 /* mazesView.m */; };
+		BE786E2025524833008FDDF5 /* grid.m in Sources */ = {isa = PBXBuildFile; fileRef = BE786E1F25524833008FDDF5 /* grid.m */; };
+		BE786E2525524A13008FDDF5 /* cell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE786E2425524A13008FDDF5 /* cell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE2EB9D125708569009531B3 /* huntAndKill.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = huntAndKill.m; sourceTree = "<group>"; };
+		BE2EB9D4257085A8009531B3 /* huntAndKill.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = huntAndKill.h; sourceTree = "<group>"; };
+		BE2EB9D625708EC3009531B3 /* solver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = solver.h; sourceTree = "<group>"; };
+		BE2EB9FF257155AB009531B3 /* solver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = solver.m; sourceTree = "<group>"; };
+		BE2EBA1125716342009531B3 /* algorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = algorithm.h; sourceTree = "<group>"; };
+		BE2EBA132571649A009531B3 /* recursiveBacktracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = recursiveBacktracker.h; sourceTree = "<group>"; };
+		BE2EBA14257164AB009531B3 /* recursiveBacktracker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = recursiveBacktracker.m; sourceTree = "<group>"; };
+		BE2EBA1925716FA1009531B3 /* algorithm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = algorithm.m; sourceTree = "<group>"; };
 		BE786E112550AE10008FDDF5 /* mazes.saver */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mazes.saver; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE786E142550AE10008FDDF5 /* mazesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mazesView.h; sourceTree = "<group>"; };
 		BE786E162550AE10008FDDF5 /* mazesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mazesView.m; sourceTree = "<group>"; };
 		BE786E182550AE10008FDDF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE786E1F25524833008FDDF5 /* grid.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = grid.m; sourceTree = "<group>"; };
+		BE786E2325524949008FDDF5 /* grid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = grid.h; sourceTree = "<group>"; };
+		BE786E2425524A13008FDDF5 /* cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cell.m; sourceTree = "<group>"; };
+		BE786E2825524A1F008FDDF5 /* cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +47,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE2EBA102571632C009531B3 /* algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				BE2EB9D4257085A8009531B3 /* huntAndKill.h */,
+				BE2EB9D125708569009531B3 /* huntAndKill.m */,
+				BE2EBA1125716342009531B3 /* algorithm.h */,
+				BE2EBA1925716FA1009531B3 /* algorithm.m */,
+				BE2EBA132571649A009531B3 /* recursiveBacktracker.h */,
+				BE2EBA14257164AB009531B3 /* recursiveBacktracker.m */,
+			);
+			path = algorithms;
+			sourceTree = "<group>";
+		};
 		BE786E072550AE10008FDDF5 = {
 			isa = PBXGroup;
 			children = (
@@ -48,9 +79,16 @@
 		BE786E132550AE10008FDDF5 /* mazes */ = {
 			isa = PBXGroup;
 			children = (
+				BE2EBA102571632C009531B3 /* algorithms */,
 				BE786E142550AE10008FDDF5 /* mazesView.h */,
 				BE786E162550AE10008FDDF5 /* mazesView.m */,
 				BE786E182550AE10008FDDF5 /* Info.plist */,
+				BE786E2325524949008FDDF5 /* grid.h */,
+				BE786E1F25524833008FDDF5 /* grid.m */,
+				BE786E2825524A1F008FDDF5 /* cell.h */,
+				BE786E2425524A13008FDDF5 /* cell.m */,
+				BE2EB9D625708EC3009531B3 /* solver.h */,
+				BE2EB9FF257155AB009531B3 /* solver.m */,
 			);
 			path = mazes;
 			sourceTree = "<group>";
@@ -134,6 +172,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE786E172550AE10008FDDF5 /* mazesView.m in Sources */,
+				BE2EB9D225708569009531B3 /* huntAndKill.m in Sources */,
+				BE786E2525524A13008FDDF5 /* cell.m in Sources */,
+				BE2EBA00257155AB009531B3 /* solver.m in Sources */,
+				BE2EBA1A25716FA1009531B3 /* algorithm.m in Sources */,
+				BE2EBA15257164AB009531B3 /* recursiveBacktracker.m in Sources */,
+				BE786E2025524833008FDDF5 /* grid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +300,8 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Y2XSHT9XMR;
+				DEVELOPMENT_TEAM = DL2K666NC7;
+				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = mazes/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_BUNDLE_IDENTIFIER = com.llamaSoftware.mazes;
@@ -270,7 +315,8 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Y2XSHT9XMR;
+				DEVELOPMENT_TEAM = DL2K666NC7;
+				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = mazes/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_BUNDLE_IDENTIFIER = com.llamaSoftware.mazes;
