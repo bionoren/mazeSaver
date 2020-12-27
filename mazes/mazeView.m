@@ -1,60 +1,57 @@
 //
-//  mazesView.m
+//  mazeView.m
 //  mazes
 //
-//  Created by Bion Oren on 11/2/20.
+//  Created by Bion Oren on 12/16/20.
 //
 
-#define CELL_SIZE 20
-
-#import "mazesView.h"
-#import "grid.h"
+#import <Foundation/Foundation.h>
+#import "mazeView.h"
 #import "algorithms/huntAndKill.h"
 #import "algorithms/recursiveBacktracker.h"
 #import "algorithms/algorithm.h"
-#import "solver.h"
 
-@interface mazesView ()
+#define CELL_SIZE 20
+#define NODE_FRAME(r, c) CGRectMake(frame.origin.x + c * CELL_SIZE, frame.origin.y + r * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+
+@interface mazeView () {
+    CGColorRef white;
+    CGColorRef green;
+    CGSize size;
+    float deltax, deltay;
+    CGRect frame;
+}
 
 @property (nonatomic, retain) Grid* grid;
-@property (nonatomic, retain) NSObject<Algorithm>* algorithm;
 @property (nonatomic, retain) Solver* solver;
+@property (nonatomic, retain) NSObject<Algorithm>* algorithm;
 @property (nonatomic, assign) int waitTicks;
 
 @end
 
-@implementation mazesView
+@implementation mazeView
 
 @synthesize grid;
+@synthesize solver;
 @synthesize algorithm;
+@synthesize waitTicks;
 
-- (instancetype)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview {
-    if (self = [super initWithFrame:frame isPreview:isPreview]) {
-        [self setAnimationTimeInterval:1/30.0];
+- (instancetype)initWithFrame:(NSRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        white = [NSColor whiteColor].CGColor;
+        green = [NSColor greenColor].CGColor;
+
+        size = CGSizeMake(self.grid.columns * CELL_SIZE, self.grid.rows * CELL_SIZE);
+        deltax = self.frame.size.width - size.width;
+        deltay = self.frame.size.height - size.height;
+        frame = CGRectMake(deltax / 2, deltay / 2, size.width, size.height);
     }
     return self;
-}
-
-- (void)startAnimation {
-    [super startAnimation];
-
-    [self reset];
-}
-
-- (void)stopAnimation {
-    [super stopAnimation];
 }
 
 - (void)drawRect:(NSRect)rect {
     [super drawRect:rect];
     CGContextRef ctx = [NSGraphicsContext currentContext].CGContext;
-    CGColorRef white = [NSColor whiteColor].CGColor;
-    CGColorRef green = [NSColor greenColor].CGColor;
-
-    CGSize size = CGSizeMake(self.grid.columns * CELL_SIZE, self.grid.rows * CELL_SIZE);
-    float deltax = rect.size.width - size.width;
-    float deltay = rect.size.height - size.height;
-    CGRect frame = CGRectMake(rect.origin.x + deltax / 2, rect.origin.y + deltay / 2, size.width, size.height);
 
     CGContextSetLineWidth(ctx, 1.0);
     CGContextSetStrokeColorWithColor(ctx, white);
@@ -67,7 +64,7 @@
                 continue;
             }
 
-            CGRect nodeFrame = CGRectMake(frame.origin.x + c * CELL_SIZE, frame.origin.y + r * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            CGRect nodeFrame = NODE_FRAME(r, c);
 
             int numPoints = 0;
             CGPoint points[8];
@@ -113,9 +110,7 @@
     }
 }
 
-- (void)animateOneFrame {
-    [self setNeedsDisplay:YES];
-
+- (int)step {
     if([self.algorithm step]) {
         if(self.solver == nil) {
             self.solver = [[Solver alloc] initWithGrid:self.grid];
@@ -125,11 +120,10 @@
         }
     }
 
-    if(self.waitTicks > 5 / self.animationTimeInterval) {
-        [self reset];
-    }
+    // TODO can I use setNeedsDisplayInRect: instead? Is that faster?
+    [self setNeedsDisplay:YES];
 
-    return;
+    return self.waitTicks;
 }
 
 - (void)reset {
@@ -140,14 +134,6 @@
     self.grid = [[Grid alloc] initWithRows:rows Columns:cols];
     self.algorithm = [[RecursiveBacktracker alloc] initWithGrid:self.grid];
     self.solver = nil;
-}
-
-- (BOOL)hasConfigureSheet {
-    return NO;
-}
-
-- (NSWindow*)configureSheet {
-    return nil;
 }
 
 @end

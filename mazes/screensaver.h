@@ -7,6 +7,6 @@
 
 #import <ScreenSaver/ScreenSaver.h>
 
-@interface mazesView : ScreenSaverView
+@interface screensaver : ScreenSaverView
 
 @end
