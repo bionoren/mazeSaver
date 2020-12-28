@@ -42,9 +42,9 @@
     return self.path;
 }
 
--(bool)step {
+-(Cell*)step {
     if(self.current == [self.grid end]) {
-        return true;
+        return nil;
     }
 
     struct randomDirections dirOptions;
@@ -55,15 +55,16 @@
             Cell* node = [self.current NeighborInDirection:d];
             if(!_visited[node.index]) {
                 [self visitCell:node];
-                return false;
+                return node;
             }
         }
     }
 
+    Cell* node = self.path.lastObject;
     [self.path removeLastObject];
     self.current = self.path.lastObject;
 
-    return false;
+    return node;
 }
 
 -(void)visitCell:(Cell*)node {

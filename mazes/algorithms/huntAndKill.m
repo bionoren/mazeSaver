@@ -40,9 +40,9 @@
    return self;
 }
 
--(bool)step {
+-(Cell*)step {
     if(self.visits == self.grid.size) {
-        return true;
+        return nil;
     }
 
     while(_dirOptions.size > 0) {
@@ -57,7 +57,7 @@
         self.node = [self.node connect:dir];
         resetRandomDirections(&_dirOptions);
 
-        return false;
+        return self.node;
     }
 
     for(int r = 0; r < self.grid.rows; r++) {
@@ -85,12 +85,12 @@
                 self.visits++;
 
                 resetRandomDirections(&_dirOptions);
-                return false;
+                return self.node;
             }
         }
     }
 
-    return true;
+    return nil;
 }
 
 @end

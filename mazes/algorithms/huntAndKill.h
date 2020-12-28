@@ -12,6 +12,6 @@
 @interface HuntAndKill : NSObject <Algorithm>
 
 -(id)initWithGrid:(Grid*)grid;
--(bool)step; // explores a new cell in the maze
+-(Cell*)step; // explores a new cell in the maze
 
 @end

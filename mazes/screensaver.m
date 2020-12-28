@@ -27,7 +27,7 @@
     [super startAnimation];
 
     self.maze = [[mazeView alloc] initWithFrame:self.bounds];
-    [self.maze reset];
+    [self addSubview:self.maze];
 }
 
 - (void)stopAnimation {

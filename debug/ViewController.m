@@ -20,15 +20,15 @@
     [super viewDidLoad];
 
     self.maze = [[mazeView alloc] initWithFrame:self.view.bounds];
-    [self.maze reset];
     [self.view addSubview:self.maze];
 
     [NSTimer scheduledTimerWithTimeInterval:1.0f/30.0f target:self selector:@selector(update) userInfo:nil repeats:YES];
 }
 
 -(void)update {
-    [self.maze step];
-    [self.maze setNeedsDisplay:YES];
+    if([self.maze step] > 0) {
+        [self.maze reset];
+    }
 }
 
 - (void)setRepresentedObject:(id)representedObject {

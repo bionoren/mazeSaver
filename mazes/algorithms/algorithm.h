@@ -10,7 +10,7 @@
 
 @protocol Algorithm <NSObject>
 
--(bool)step; // explores a new cell in the maze
+-(Cell*)step; // explores a new cell in the maze
 
 @end
 

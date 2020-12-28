@@ -38,7 +38,7 @@
     return self;
 }
 
--(bool)step {
+-(Cell*)step {
     while(self.stack.count > 0) {
         Cell* node = self.stack.lastObject;
 
@@ -54,14 +54,14 @@
                 next.explored = true;
                 [self.stack addObject:next];
 
-                return false;
+                return next;
             }
         }
 
         [self.stack removeLastObject];
     }
 
-    return true;
+    return nil;
 }
 
 @end

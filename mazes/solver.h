@@ -11,7 +11,7 @@
 @interface Solver : NSObject
 
 -(id)initWithGrid:(Grid*)grid;
--(bool)step;
+-(Cell*)step;
 -(NSArray<Cell*>*)Path;
 
 @end
