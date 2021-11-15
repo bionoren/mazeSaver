@@ -15,17 +15,21 @@
 @property (nonatomic, retain) Grid* grid;
 @property (nonatomic, retain) NSMutableArray<Cell*>* path;
 @property (nonatomic, retain) Cell* current;
+@property (nonatomic, retain) Cell* end;
 
 @end
 
 @implementation Solver
 
 @synthesize grid;
+@synthesize current;
+@synthesize end;
 
 -(id)initWithGrid:(Grid*)grid {
     if(self = [super init]) {
         self.grid = grid;
         self.path = [[NSMutableArray alloc] initWithCapacity:self.grid.size / 2];
+        self.end = [self.grid end];
         _visited = calloc(self.grid.size, sizeof(bool));
 
         [self visitCell:self.grid.start];
@@ -43,7 +47,7 @@
 }
 
 -(Cell*)step {
-    if(self.current == [self.grid end]) {
+    if(self.current == self.end) {
         return nil;
     }
 

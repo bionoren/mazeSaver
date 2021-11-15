@@ -10,12 +10,16 @@
 @interface Grid ()
 
 @property (nonatomic, retain) NSMutableArray<NSMutableArray<Cell*>*>* cells;
+@property (nonatomic, retain) Cell* startCell;
+@property (nonatomic, retain) Cell* endCell;
 
 @end
 
 @implementation Grid
 
 @synthesize cells;
+@synthesize startCell;
+@synthesize endCell;
 
 -(id)initWithRows:(int)rows Columns:(int)columns {
    if ((self = [super init])) {
@@ -55,9 +59,32 @@
             }
          }
       }
+
+       int start = arc4random_uniform(4);
+       int end = arc4random_uniform(4);
+       self.startCell = [self corner:start];
+       while(end == start) {
+           end = arc4random_uniform(4);
+       }
+       self.endCell = [self corner:end];
    }
 
    return self;
+}
+
+-(Cell*)corner:(int)idx {
+    switch(idx) {
+        case 0:
+            return [self cellForRow:self.rows-1 Column:0];
+        case 1:
+            return [self cellForRow:0 Column:0];
+        case 2:
+            return [self cellForRow:self.rows-1 Column:self.columns-1];
+        case 3:
+            return [self cellForRow:0 Column:self.columns-1];
+    }
+
+    return nil;
 }
 
 -(int)rows {
@@ -83,11 +110,11 @@
 }
 
 -(Cell*)start {
-    return [self cellForRow:self.rows-1 Column:0];
+    return self.startCell;
 }
 
 -(Cell*)end {
-    return [self cellForRow:0 Column:self.columns-1];
+    return self.endCell;
 }
 
 @end
